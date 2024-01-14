@@ -1,0 +1,47 @@
+<%= form_for [:user, transaction] do |f| %>
+  <% if transaction.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+        <% transaction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if transaction.source.blank? %>
+     <div class='form-group'>
+      <%= f.label :source_id %>
+      <%= f.select :source_id, options_for_select(current_user.invesments.pluck(:name, :id), f.object.source_id), {include_blank: true}, {class: ''} %>
+    </div>
+  <% else %>
+    From: <%= transaction.source.name %>
+    <%= f.hidden_field :source_id, value: f.object.source_id %>
+  <% end %>
+
+  <% if transaction.target.blank? %>
+     <div class='form-group'>
+      <%= f.label :target_id %>
+      <%= f.select :target_id, options_for_select(current_user.invesments.pluck(:name, :id), f.object.target_id), {include_blank: true}, {class: ''} %>
+    </div>
+  <% else %>
+    To: <%= transaction.target.name %>
+    <%= f.hidden_field :target_id, value: f.object.target_id %>
+  <% end %>
+
+  <div class='form-group'>
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+  </div>
+
+   <div class='form-group'>
+    <%= f.label :note %>
+    <%= f.text_field :note %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

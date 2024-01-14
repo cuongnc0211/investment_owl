@@ -1,0 +1,13 @@
+<% if @transaction.source %>
+  <%= turbo_stream.prepend "#{dom_id @transaction.source}-transactions" do %>
+    <%= render partial: 'user/transactions/transaction', locals: { transaction: @transaction } %>
+  <% end %>
+<% end %>
+
+<% if @transaction.target %>
+  <%= turbo_stream.prepend "#{dom_id @transaction.target}-transactions" do %>
+    <%= render partial: 'user/transactions/transaction', locals: { transaction: @transaction } %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace 'flash-container', partial: 'layouts/shared/flash' %>

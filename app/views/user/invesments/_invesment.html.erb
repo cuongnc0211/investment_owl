@@ -12,6 +12,12 @@
       <%= render partial: 'user/value_histories/value_history', collection: invesment.recent_5_values, as: :value_history %>
     </ul>
 
+    <h3>Recent Transactions:</h3>
+    <ul id="<%= dom_id invesment %>-transactions">
+      <%= render partial: 'user/transactions/transaction', collection: invesment.recent_5_withdraw_transactions, as: :transaction %>
+      <%= render partial: 'user/transactions/transaction', collection: invesment.recent_5_deposit_transactions, as: :transaction %>
+    </ul>
+
     <p>
       <%= link_to "Show this invesment", user_invesment_path(invesment), "data-turbo": "false" %>
       <%= link_to "Edit this invesment", edit_user_invesment_path(invesment) %>
@@ -21,5 +27,9 @@
   <%= turbo_frame_tag 'invesment_new_value' do %>
     <%= link_to 'Log current value', new_user_invesment_value_history_path(invesment_id: invesment.id) %>
   <% end %>
-</div>
 
+  <%= turbo_frame_tag 'invesment_new_transaction' do %>
+    <%= link_to 'Deposit', new_user_transaction_path(target_id: invesment.id) %>
+    <%= link_to 'Withdraw', new_user_transaction_path(source_id: invesment.id) %>
+  <% end %>
+</div>

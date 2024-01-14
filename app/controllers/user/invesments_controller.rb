@@ -2,7 +2,8 @@ class User::InvesmentsController < User::BaseController
   before_action :set_invesment, only: %i[ show edit update destroy ]
 
   def index
-    @invesments = Invesment.includes(:recent_5_values).all.newest
+    @invesments = Invesment.includes(:recent_5_values, :recent_5_withdraw_transactions,
+      :recent_5_deposit_transactions).all.newest
   end
 
   def show
@@ -17,7 +18,6 @@ class User::InvesmentsController < User::BaseController
 
   def create
     @invesment = current_user.invesments.build(invesment_params)
-    binding.pry
 
     respond_to do |format|
       if @invesment.save

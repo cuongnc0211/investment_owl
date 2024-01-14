@@ -1,0 +1,8 @@
+<li>
+  <p>
+    <b>From: </b> <%= transaction.source&.name %> | 
+    <b>To: </b> <%= transaction.target&.name %> | 
+    <b>Amount: </b> <%= transaction.amount&.format %> 
+    (<%= transaction.created_at.strftime('%d/%m/%Y %H:%M') %>)
+  </p>
+</li>

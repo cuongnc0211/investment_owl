@@ -1,0 +1,7 @@
+<h1>Create New Transaction </h1>
+
+<%= turbo_frame_tag 'invesment_new_transaction' do %>
+  <%= render 'form', transaction: @transaction %>
+
+  <%= link_to 'Cancel', user_invesments_path %>
+<% end %>

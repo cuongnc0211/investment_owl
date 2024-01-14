@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :invesments do
       resources :value_histories
     end
+    resources :transactions
   end
 end

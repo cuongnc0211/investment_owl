@@ -68,3 +68,6 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "monetize", "~> 1.12"
+gem 'money-rails', '~> 1.12'

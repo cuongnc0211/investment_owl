@@ -59,6 +59,6 @@ class User::InvesmentsController < User::BaseController
     end
 
     def invesment_params
-      params.require(:invesment).permit(:name, :description, :status, :capital_cents, value_histories_attributes: [:current_value_cents])
+      params.require(:invesment).permit(:name, :description, :status, :capital, value_histories_attributes: [:current_value])
     end
 end

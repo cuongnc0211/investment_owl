@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_13_102155) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_14_082923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_102155) do
     t.text "description"
     t.integer "capital_cents"
     t.datetime "capital_at"
-    t.integer "current_value_cents"
     t.string "status"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -39,5 +38,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_102155) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "value_histories", force: :cascade do |t|
+    t.bigint "invesment_id", null: false
+    t.integer "previous_value_cents"
+    t.integer "previous_record_id"
+    t.integer "current_value_cents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invesment_id"], name: "index_value_histories_on_invesment_id"
+  end
+
   add_foreign_key "invesments", "users"
+  add_foreign_key "value_histories", "invesments"
 end

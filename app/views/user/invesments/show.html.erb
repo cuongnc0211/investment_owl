@@ -4,7 +4,7 @@
   <p>Name: <%= @invesment.name %></p>
   <p>Description: <%= @invesment.description %></p>
   <p>Capital: <%= @invesment.capital_cents %></p>
-  <p>Current Value: <%= @invesment.current_value_cents %></p>
+  <p>Current Value: <%= @invesment.value_histories.last&.current_value_cents %></p>
   <p>Created At: <%= @invesment.created_at %></p>
 </div>
 

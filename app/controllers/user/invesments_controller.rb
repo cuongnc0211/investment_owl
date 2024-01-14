@@ -17,6 +17,7 @@ class User::InvesmentsController < User::BaseController
 
   def create
     @invesment = current_user.invesments.build(invesment_params)
+    binding.pry
 
     respond_to do |format|
       if @invesment.save
@@ -58,6 +59,6 @@ class User::InvesmentsController < User::BaseController
     end
 
     def invesment_params
-      params.require(:invesment).permit(:name, :description, :status, :capital_cents, :current_value_cents)
+      params.require(:invesment).permit(:name, :description, :status, :capital_cents, value_histories_attributes: [:current_value_cents])
     end
 end

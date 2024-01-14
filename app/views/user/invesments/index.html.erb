@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Invesments</h1>
+
+<div id="invesments">
+  <% @invesments.each do |invesment| %>
+    <%= render invesment %>
+    <p>
+      <%= link_to "Show this invesment", user_invesment_path(invesment) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New invesment", new_user_invesment_path %>

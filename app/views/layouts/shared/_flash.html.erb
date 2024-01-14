@@ -1,0 +1,5 @@
+<% if flash.any? %>
+  <% flash.keys.each do |key| %>
+    <%= render partial: 'layouts/shared/flash_msg', locals: { alert_class: flash_alert_class(key), message: flash[key] } %>
+  <% end %>
+<% end %>

@@ -1,3 +1,5 @@
 <%= turbo_stream.prepend "invesments" do %>
   <%= render partial: 'user/invesments/invesment', locals: { invesment: @invesment } %>
 <% end %>
+
+<%= turbo_stream.replace 'flash-container', partial: 'layouts/shared/flash' %>

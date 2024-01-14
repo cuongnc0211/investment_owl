@@ -21,11 +21,11 @@ class User::InvesmentsController < User::BaseController
     respond_to do |format|
       if @invesment.save
         format.html { redirect_to user_invesment_url(@invesment), notice: "Invesment was successfully created." }
-        format.json { render :show, status: :created, location: @invesment }
-        format.turbo_stream
+        format.turbo_stream {
+          flash[:notice] = 'Create invesment successfully'
+        }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @invesment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -34,11 +34,11 @@ class User::InvesmentsController < User::BaseController
     respond_to do |format|
       if @invesment.update(invesment_params)
         format.html { redirect_to user_invesment_url(@invesment), notice: "Invesment was successfully updated." }
-        format.json { render :show, status: :ok, location: @invesment }
-        format.turbo_stream
+        format.turbo_stream {
+          flash[:notice] = 'Update invesment successfully'
+        }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @invesment.errors, status: :unprocessable_entity }
       end
     end
   end

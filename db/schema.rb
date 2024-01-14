@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_14_090813) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_14_111223) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_14_090813) do
     t.datetime "updated_at", null: false
     t.string "currency", default: "VND"
     t.index ["user_id"], name: "index_invesments_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "source_id"
+    t.bigint "target_id"
+    t.string "note"
+    t.integer "amount_cents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_id"], name: "index_transactions_on_source_id"
+    t.index ["target_id"], name: "index_transactions_on_target_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,5 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_14_090813) do
   end
 
   add_foreign_key "invesments", "users"
+  add_foreign_key "transactions", "invesments", column: "source_id"
+  add_foreign_key "transactions", "invesments", column: "target_id"
   add_foreign_key "value_histories", "invesments"
 end

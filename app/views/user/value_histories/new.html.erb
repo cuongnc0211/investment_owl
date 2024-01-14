@@ -1,0 +1,7 @@
+<h1> New Value History </h1>
+
+<%= turbo_frame_tag 'invesment_new_value' do %>
+  <%= render 'form', invesment: @invesment, value_history: @value_history %>
+
+  <%= link_to 'Cancel', user_invesments_path %>
+<% end %>

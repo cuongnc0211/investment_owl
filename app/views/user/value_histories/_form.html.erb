@@ -1,0 +1,22 @@
+<%= form_for [:user, invesment, value_history] do |f| %>
+  <% if value_history.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(invesment.errors.count, "error") %> prohibited this value_history from being saved:</h2>
+
+      <ul>
+        <% value_history.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='form-group'>
+    <%= f.label :current_value %>
+    <%= f.number_field :current_value %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -4,12 +4,22 @@
     <p>Name: <%= invesment.name %></p>
     <p>Description: <%= invesment.description %></p>
     <p>Capital: <%= invesment.capital.format %></p>
+    <p>Current Value: <%= invesment.current_value&.format %></p>
     <p>Created At: <%= invesment.created_at %></p>
+
+    <h3>Recent Value History:</h3>
+    <ul id="<%= dom_id invesment %>-value_histories">
+      <%= render partial: 'user/value_histories/value_history', collection: invesment.recent_5_values, as: :value_history %>
+    </ul>
 
     <p>
       <%= link_to "Show this invesment", user_invesment_path(invesment), "data-turbo": "false" %>
       <%= link_to "Edit this invesment", edit_user_invesment_path(invesment) %>
     </p>
+  <% end %>
+
+  <%= turbo_frame_tag 'invesment_new_value' do %>
+    <%= link_to 'Log current value', new_user_invesment_value_history_path(invesment_id: invesment.id) %>
   <% end %>
 </div>
 

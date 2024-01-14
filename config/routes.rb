@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   namespace :user do
-    resources :invesments
-    resources :investments
+    resources :invesments do
+      resources :value_histories
+    end
   end
 end

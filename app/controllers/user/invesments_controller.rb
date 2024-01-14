@@ -2,7 +2,7 @@ class User::InvesmentsController < User::BaseController
   before_action :set_invesment, only: %i[ show edit update destroy ]
 
   def index
-    @invesments = Invesment.all.newest
+    @invesments = Invesment.includes(:recent_5_values).all.newest
   end
 
   def show
@@ -55,7 +55,7 @@ class User::InvesmentsController < User::BaseController
 
   private
     def set_invesment
-      @invesment = current_user.invesments.find(params[:id])
+      @invesment = current_user.invesments.includes(:recent_5_values).find(params[:id])
     end
 
     def invesment_params

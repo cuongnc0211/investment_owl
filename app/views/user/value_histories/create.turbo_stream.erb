@@ -1,0 +1,5 @@
+<%= turbo_stream.prepend "#{dom_id @invesment}-value_histories" do %>
+  <%= render partial: 'user/value_histories/value_history', locals: { value_history: @value_history } %>
+<% end %>
+
+<%= turbo_stream.replace 'flash-container', partial: 'layouts/shared/flash' %>

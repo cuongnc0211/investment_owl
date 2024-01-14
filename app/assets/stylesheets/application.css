@@ -20,3 +20,18 @@
   width: 1600px;
   margin: 0 auto;
 }
+
+turbo-frame {
+  display: block;
+  padding: 15px;
+  border: 1px solid blue;
+  margin-bottom: 15px;
+}
+
+.invesment-item {
+  display: block;
+  width: 100%;
+  border: 1px solid black;
+  padding: 15px;
+  margin-bottom: 15px;
+}

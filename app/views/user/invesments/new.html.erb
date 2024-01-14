@@ -1,6 +1,10 @@
 <h1>New invesment</h1>
 
-<%= render "form", invesment: @invesment %>
+<%= turbo_frame_tag "new_invesment" do %>
+  <%= render "form", invesment: @invesment %>
+
+  <%= link_to "Cancel", user_invesments_path %>
+<% end %>
 
 <br>
 

@@ -2,13 +2,12 @@
 
 <h1>Invesments</h1>
 
+<%= turbo_frame_tag "new_invesment" do %>
+  <%= link_to "New invesment", new_user_invesment_path %>
+<% end %>
+
 <div id="invesments">
   <% @invesments.each do |invesment| %>
     <%= render invesment %>
-    <p>
-      <%= link_to "Show this invesment", user_invesment_path(invesment) %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New invesment", new_user_invesment_path %>

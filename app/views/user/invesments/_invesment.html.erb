@@ -1,5 +1,6 @@
-<%= turbo_frame_tag "invesment" do %>
-  <div id="<%= dom_id invesment %>" class='invesment-item'>
+
+<div id="<%= dom_id invesment %>" class='invesment-item'>
+  <%= turbo_frame_tag "invesment" do %>
     <p>Name: <%= invesment.name %></p>
     <p>Description: <%= invesment.description %></p>
     <p>Capital: <%= invesment.capital_cents %></p>
@@ -10,5 +11,6 @@
       <%= link_to "Show this invesment", user_invesment_path(invesment), "data-turbo": "false" %>
       <%= link_to "Edit this invesment", edit_user_invesment_path(invesment) %>
     </p>
-  </div>
-<% end %>
+  <% end %>
+</div>
+

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace @invesment, target: "#{dom_id(@invesment)}" do %>
+  <%= render partial: 'user/invesments/invesment', locals: { invesment: @invesment } %>
+<% end %>

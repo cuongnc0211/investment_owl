@@ -35,6 +35,7 @@ class User::InvesmentsController < User::BaseController
       if @invesment.update(invesment_params)
         format.html { redirect_to user_invesment_url(@invesment), notice: "Invesment was successfully updated." }
         format.json { render :show, status: :ok, location: @invesment }
+        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @invesment.errors, status: :unprocessable_entity }

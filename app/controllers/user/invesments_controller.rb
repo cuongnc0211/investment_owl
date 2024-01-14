@@ -22,6 +22,7 @@ class User::InvesmentsController < User::BaseController
       if @invesment.save
         format.html { redirect_to user_invesment_url(@invesment), notice: "Invesment was successfully created." }
         format.json { render :show, status: :created, location: @invesment }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @invesment.errors, status: :unprocessable_entity }

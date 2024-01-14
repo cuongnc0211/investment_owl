@@ -6,8 +6,10 @@
   <%= link_to "New invesment", new_user_invesment_path %>
 <% end %>
 
-<div id="invesments">
-  <% @invesments.each do |invesment| %>
-    <%= render invesment %>
-  <% end %>
-</div>
+<%= turbo_frame_tag "invesments" do %>
+  <div id="invesments">
+    <% @invesments.each do |invesment| %>
+      <%= render invesment %>
+    <% end %>
+  </div>
+<% end %>

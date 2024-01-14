@@ -2,7 +2,7 @@ class User::InvesmentsController < User::BaseController
   before_action :set_invesment, only: %i[ show edit update destroy ]
 
   def index
-    @invesments = Invesment.all
+    @invesments = Invesment.all.newest
   end
 
   def show

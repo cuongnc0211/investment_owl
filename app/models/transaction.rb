@@ -8,4 +8,14 @@ class Transaction < ApplicationRecord
   scope :last_5, -> { order(created_at: :desc).limit(5) }
 
   delegate :currency, to: :source, prefix: false, allow_nil: true
+
+  validate :enough_source_money
+
+  private
+
+  def enough_source_money
+    return true if source.blank?
+
+    errors.add(:amount, 'Not enough money') if source.current_capital < amount
+  end
 end

@@ -24,4 +24,8 @@ class Invesment < ApplicationRecord
   def current_value
     value_histories.last&.current_value
   end
+
+  def current_capital
+    capital - withdraw_transactions.map(&:amount).sum + deposit_transactions.map(&:amount).sum
+  end
 end

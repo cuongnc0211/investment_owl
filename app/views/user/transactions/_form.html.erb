@@ -1,4 +1,6 @@
-<%= form_for [:user, transaction] do |f| %>
+<%= form_for [:user, transaction],
+  data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f|
+%>
   <% if transaction.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>

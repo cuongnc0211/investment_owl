@@ -2,6 +2,8 @@ class Transaction < ApplicationRecord
   belongs_to :source, class_name: 'Invesment', foreign_key: 'source_id', optional: true
   belongs_to :target, class_name: 'Invesment', foreign_key: 'target_id', optional: true
 
+  attr_accessor :transaction_type
+
   monetize :amount_cents
 
   scope :newest, -> { order(created_at: :desc) }

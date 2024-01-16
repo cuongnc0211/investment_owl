@@ -1,44 +1,41 @@
-<div class="col-12 col-lg-6 col-md-6 mb-4">
-  <div class="card border-left-primary shadow h-100 py-2">
-    <div class="card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="card-body">
-          <div id="<%= dom_id invesment %>" class='invesment-item'>
-            <%= turbo_frame_tag "invesment" do %>
-              <p>Name: <%= invesment.name %></p>
-              <p>Description: <%= invesment.description %></p>
-              <p>Curernt Capital: <%= invesment.current_capital.format %></p>
-              <p>Current Value: <%= invesment.current_value&.format %></p>
-              <p>Created At: <%= invesment.created_at %></p>
+<div id="<%= dom_id invesment %>" class='mb-3 col-12 col-md-6'>
+  <div class="card card-header-actions">
+    <%= turbo_frame_tag "invesment" do %>
+      <div class="card-header">
+        <a href="<%= user_invesment_path(invesment) %>" data-turbo="false">
+          <b><%= invesment.name.upcase %></b>
+        </a>
 
-              <h3>Recent Value History:</h3>
-              <ul id="<%= dom_id invesment %>-value_histories">
-                <%= render partial: 'user/value_histories/value_history', collection: invesment.recent_5_values, as: :value_history %>
-              </ul>
+        <div><%= link_to 'Edit', edit_user_invesment_path(invesment) %></div>
+      </div>
+      <div class="card-body">
+        <p class="card-title">
+          <b>Current Value:</b> <%= invesment.current_value&.format %> | <b>Capital:</b> <%= invesment.current_capital.format %>
+        </p>
 
-              <h3>Recent Transactions:</h3>
-              <ul id="<%= dom_id invesment %>-transactions">
-                <%= render partial: 'user/transactions/transaction', collection: invesment.recent_5_withdraw_transactions, as: :transaction %>
-                <%= render partial: 'user/transactions/transaction', collection: invesment.recent_5_deposit_transactions, as: :transaction %>
-              </ul>
+        <hr>
 
-              <p>
-                <%= link_to "Show this invesment", user_invesment_path(invesment), "data-turbo": "false" %>
-                <%= link_to "Edit this invesment", edit_user_invesment_path(invesment) %>
-              </p>
-            <% end %>
-
-            <%= turbo_frame_tag 'invesment_new_value' do %>
-              <%= link_to 'Log current value', new_user_invesment_value_history_path(invesment_id: invesment.id) %>
-            <% end %>
-
-            <%= turbo_frame_tag 'invesment_new_transaction' do %>
-              <%= link_to 'Deposit', new_user_transaction_path(target_id: invesment.id) %>
-              <%= link_to 'Withdraw', new_user_transaction_path(source_id: invesment.id) %>
-            <% end %>
+        <div class='row'>
+          <div class='col-6'>
+            <h6>Recent Value Histories:</h6>
+            <%= render partial: 'user/value_histories/value_history', collection: invesment.recent_5_values, as: :value_history %>
+          </div>
+          <div class='col-6'>
+            <h6>Recent Transactions:</h6>
+            <%= render partial: 'user/transactions/transaction', collection: invesment.transactions(3),
+              as: :transaction, locals: { invesment: invesment } %>
           </div>
         </div>
+
+        <%= turbo_frame_tag 'invesment_new_value' do %>
+          <%= link_to 'Log current value', new_user_invesment_value_history_path(invesment_id: invesment.id) %> |
+        <% end %>
+
+        <%= turbo_frame_tag 'invesment_new_transaction' do %>
+          <%= link_to 'Deposit', new_user_transaction_path(target_id: invesment.id) %> |
+          <%= link_to 'Withdraw', new_user_transaction_path(source_id: invesment.id) %> |
+        <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

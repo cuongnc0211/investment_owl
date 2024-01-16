@@ -21,6 +21,16 @@ class Invesment < ApplicationRecord
 
   accepts_nested_attributes_for :value_histories, allow_destroy: true
 
+  def transactions(limit = 5)
+    list = Transaction.where("source_id = ? OR target_id = ?", self.id, self.id).limit(limit)
+
+    list.each do |t| 
+      t.transaction_type = (id == t.source_id) ? 'withdraw' : 'deposit'
+    end
+
+    list
+  end
+
   def current_value
     value_histories.last&.current_value
   end

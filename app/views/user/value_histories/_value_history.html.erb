@@ -1,6 +1,4 @@
-<li>
-  <p>
-    <b>Value:</b> <%= value_history.current_value.format %>
-    ( <%= value_history.created_at.strftime('%d/%m/%Y %H:%M') %> )
-  </p>
-</li>
+<p>
+  <b><%= value_history.current_value.format %></b>
+  ( <%= value_history.created_at.strftime('%d/%m/%Y') %> )
+</p>

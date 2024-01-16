@@ -1,4 +1,4 @@
-<%= form_for [:user, invesment, value_history],
+<%= form_for [:user, invesment, value_history], class: "row row-cols-lg-auto g-3 align-items-center",
   data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f|
 %>
   <% if value_history.errors.any? %>
@@ -13,12 +13,13 @@
     </div>
   <% end %>
 
-  <div class='form-group'>
-    <%= f.label :current_value %>
-    <%= f.number_field :current_value %>
-  </div>
-
-  <div>
-    <%= f.submit %>
+  <div class="row g-3">
+    <div class="col-sm-7">
+      <%= f.number_field :current_value, class: "form-control", placeholder: 'Current Value' %>
+    </div>
+    <div class="col-sm">
+      <%= f.submit 'Submit', class: "btn btn-primary" %>
+      <%= link_to 'Cancel', user_invesments_path %>
+    </div>
   </div>
 <% end %>

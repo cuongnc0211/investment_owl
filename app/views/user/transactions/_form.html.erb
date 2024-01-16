@@ -1,4 +1,4 @@
-<%= form_for [:user, transaction],
+<%= form_for [:user, transaction], class: "row row-cols-lg-auto g-3 align-items-center",
   data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f|
 %>
   <% if transaction.errors.any? %>

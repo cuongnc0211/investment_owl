@@ -1,15 +1,18 @@
+<section class="bg-white">
+  <div class="container px-5">
+    <div class="row">
 
+      <%= turbo_frame_tag "new_invesment" do %>
+        <%= link_to "New invesment", new_user_invesment_path %>
+      <% end %>
 
-<h1>Invesments</h1>
-
-<%= turbo_frame_tag "new_invesment" do %>
-  <%= link_to "New invesment", new_user_invesment_path %>
-<% end %>
-
-<%= turbo_frame_tag "invesments" do %>
-  <div id="invesments">
-    <% @invesments.each do |invesment| %>
-      <%= render invesment %>
-    <% end %>
+      <%= turbo_frame_tag "invesments" do %>
+        <div id="invesments" class='row'>
+          <% @invesments.each do |invesment| %>
+            <%= render invesment %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</section>

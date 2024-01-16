@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
+gem 'sassc-rails' 
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
 
@@ -71,3 +73,6 @@ gem "devise", "~> 4.9"
 
 gem "monetize", "~> 1.12"
 gem 'money-rails', '~> 1.12'
+
+gem 'bootstrap', '~> 5.3.2'
+gem 'jquery-rails'

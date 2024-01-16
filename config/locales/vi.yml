@@ -1,0 +1,7 @@
+vi:
+  hello: "Hello world"
+  layouts:
+    shared:
+      nav_bar:
+        login: Đăng nhập
+        dashboard: Bảng điều khiển

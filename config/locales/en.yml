@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+  layouts:
+    shared:
+      nav_bar:
+        login: Login
+        dashboard: Dashboard

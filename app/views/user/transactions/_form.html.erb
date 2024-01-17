@@ -13,37 +13,57 @@
     </div>
   <% end %>
 
-  <% if transaction.source.blank? %>
-     <div class='form-group'>
-      <%= f.label :source_id %>
-      <%= f.select :source_id, options_for_select(current_user.invesments.pluck(:name, :id), f.object.source_id), {include_blank: true}, {class: ''} %>
+  <div class="row mb-3">
+    <div class="col-6">
+      <% if transaction.source.blank? %>
+        <div class='form-group'>
+          <%= f.label :source_id, class: "form-label" %>
+          <%= f.select :source_id, options_for_select(current_user.invesments.pluck(:name, :id), f.object.source_id), {include_blank: true}, {class: 'form-control'} %>
+        </div>
+      <% else %>
+        <%= f.label :source_id, 'From:', class: "form-label" %>
+        <%= f.text_field :source_id, value: transaction.source.name, disabled: true, class: 'form-control' %>
+        <%= f.hidden_field :source_id, value: f.object.source_id %>
+      <% end %>
     </div>
-  <% else %>
-    From: <%= transaction.source.name %>
-    <%= f.hidden_field :source_id, value: f.object.source_id %>
-  <% end %>
 
-  <% if transaction.target.blank? %>
-     <div class='form-group'>
-      <%= f.label :target_id %>
-      <%= f.select :target_id, options_for_select(current_user.invesments.pluck(:name, :id), f.object.target_id), {include_blank: true}, {class: ''} %>
+    <div class="col-6">
+      <% if transaction.target.blank? %>
+        <div class='form-group'>
+          <%= f.label :target_id, class: "form-label" %>
+          <%= f.select :target_id, options_for_select(current_user.invesments.pluck(:name, :id), f.object.target_id), {include_blank: true}, {class: 'form-control'} %>
+        </div>
+      <% else %>
+        <%= f.label :source_id, 'To:', class: "form-label" %>
+        <%= f.text_field :source_id, value: transaction.target.name, disabled: true, class: 'form-control' %>
+        <%= f.hidden_field :target_id, value: f.object.target_id %>
+      <% end %>
     </div>
-  <% else %>
-    To: <%= transaction.target.name %>
-    <%= f.hidden_field :target_id, value: f.object.target_id %>
-  <% end %>
-
-  <div class='form-group'>
-    <%= f.label :amount %>
-    <%= f.number_field :amount %>
   </div>
 
-   <div class='form-group'>
-    <%= f.label :note %>
-    <%= f.text_field :note %>
+  <div class="row mb-3">
+    <div class="col-6">
+      <div class='form-group'>
+        <%= f.label :amount, class: "form-label" %>
+        <%= f.number_field :amount, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class='form-group'>
+        <%= f.label :note, class: "form-label" %>
+        <%= f.text_field :note, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= f.submit %>
+  <div class="row mb-3">
+    <div class='col-6 text-left'>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+
+    <div class='col-6 text-right'>
+      <%= link_to 'Cancel', user_invesments_path %>
+    </div>
   </div>
 <% end %>

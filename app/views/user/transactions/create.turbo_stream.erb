@@ -1,12 +1,12 @@
-<% if @transaction.source %>
-  <%= turbo_stream.prepend "#{dom_id @transaction.source}-transactions" do %>
-    <%= render partial: 'user/transactions/transaction', locals: { transaction: @transaction } %>
+<% if source_invesment = @transaction.source %>
+  <%= turbo_stream.replace "#{dom_id @transaction.source}-transactions" do %>
+    <%= render partial: 'user/transactions/transaction', collection: source_invesment.transactions(3), as: :transaction %>
   <% end %>
 <% end %>
 
-<% if @transaction.target %>
-  <%= turbo_stream.prepend "#{dom_id @transaction.target}-transactions" do %>
-    <%= render partial: 'user/transactions/transaction', locals: { transaction: @transaction } %>
+<% if target_invesment = @transaction.target %>
+  <%= turbo_stream.replace "#{dom_id @transaction.target}-transactions" do %>
+    <%= render partial: 'user/transactions/transaction', collection: target_invesment.transactions(3), as: :transaction %>
   <% end %>
 <% end %>
 

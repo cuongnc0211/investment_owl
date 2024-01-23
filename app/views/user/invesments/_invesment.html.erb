@@ -19,13 +19,16 @@
           <div class='col-6'>
             <h3>Recent Value History:</h3>
             <ul id="<%= dom_id invesment %>-value_histories">
-              <%= render partial: 'user/value_histories/value_history', collection: invesment.recent_5_values, as: :value_history %>
+              <%= render partial: 'user/value_histories/value_history',
+                collection: invesment.value_histories.newest.last_5, as: :value_history %>
             </ul>
           </div>
+
           <div class='col-6'>
             <h3>Recent Transactions:</h3>
             <ul id="<%= dom_id invesment %>-transactions">
-              <%= render partial: 'user/transactions/transaction', collection: invesment.transactions(3), as: :transaction %>
+              <%= render partial: 'user/transactions/transaction',
+                collection: invesment.transactions(3), as: :transaction %>
             </ul>
           </div>
         </div>

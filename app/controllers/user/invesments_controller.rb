@@ -2,8 +2,7 @@ class User::InvesmentsController < User::BaseController
   before_action :set_invesment, only: %i[ show edit update destroy ]
 
   def index
-    @invesments = Invesment.includes(:recent_5_values, :recent_5_withdraw_transactions,
-      :recent_5_deposit_transactions).all.newest
+    @invesments = Invesment.includes(:value_histories).all.newest
   end
 
   def show

@@ -24,12 +24,10 @@
         </div>
       </div>
 
-      <%= turbo_frame_tag "invesments" do %>
-        <div id="invesments" class='row'>
-          <% @invesments.each do |invesment| %>
-            <%= render invesment %>
-          <% end %>
-        </div>
+      <%= turbo_frame_tag "invesments", class: 'row' do %>
+        <% @invesments.each do |invesment| %>
+          <%= render invesment %>
+        <% end %>
       <% end %>
     </div>
   </div>

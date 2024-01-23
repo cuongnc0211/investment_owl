@@ -4,8 +4,8 @@ class ValueHistory < ApplicationRecord
   monetize :previous_value_cents, allow_nil: true
   monetize :current_value_cents
 
-  scope :newest, -> { order(created_at: :desc) }
-  scope :last_5, -> { order(created_at: :desc).limit(5) }
+  scope :newest, -> { order(id: :desc) }
+  scope :last_5, -> { limit(5) }
 
   delegate :currency, to: :invesment
 end

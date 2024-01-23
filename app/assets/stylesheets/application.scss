@@ -15,6 +15,11 @@
 @import "bootstrap";
 @import 'sb_ui_kit';
 
+turbo-frame {
+  display: block;
+  padding-right: 0px !important;
+}
+
 .simple_flash {
   display: block;
   width: 100%;

@@ -21,6 +21,14 @@ class Invesment < ApplicationRecord
 
   accepts_nested_attributes_for :value_histories, allow_destroy: true
 
+  def profit_amount
+    current_value - capital
+  end
+
+  def profit_percentage(rounding_digits = 2)
+    (profit_amount / capital * 100.0).round(rounding_digits)
+  end
+
   def transactions(limit = 5)
     list = Transaction.where("source_id = ? OR target_id = ?", self.id, self.id).newest.limit(limit)
 

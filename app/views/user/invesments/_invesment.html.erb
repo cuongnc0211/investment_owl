@@ -1,4 +1,4 @@
-<div id="<%= dom_id invesment %>" class='mb-3 col-12 col-md-6'>
+<div id="<%= dom_id invesment %>" class='mb-3 col-12 col-md-6 pr-0' style="padding-right: 0px;">
   <div class="card card-header-actions">
     <%= turbo_frame_tag "invesment" do %>
       <div class="card-header">
@@ -9,9 +9,19 @@
         <div><%= link_to 'Edit', edit_user_invesment_path(invesment) %></div>
       </div>
       <div class="card-body">
-        <p class="card-title">
-          <b>Current Value:</b> <%= invesment.current_value&.format %> | <b>Capital:</b> <%= invesment.current_capital.format %>
-        </p>
+        <div class='row'>
+          <div class='col-12 col-md-6'>
+            <b>Current Value:</b>
+            <span class="<%= profit_class(invesment) %>"><%= invesment.current_value&.format %></span>
+          </div>
+          <div class='col-12 col-md-6'>
+            <b>Capital:</b> <%= invesment.current_capital.format %>
+          </div>
+          <div class='col-12 col-md-6'>
+            <b>Profit:</b>
+            <span class="<%= profit_class(invesment) %>"><%= invesment.profit_amount.format %> (<%= invesment.profit_percentage %> %)</span>
+          </div>
+        </div>
 
         <hr>
 

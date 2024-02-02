@@ -6,6 +6,7 @@ class ValueHistory < ApplicationRecord
 
   scope :newest, -> { order(id: :desc) }
   scope :last_5, -> { limit(5) }
+  scope :before, ->(date) { where('created_at < ?', date) }
 
   delegate :currency, to: :invesment
 end

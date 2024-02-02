@@ -3,6 +3,9 @@ class User::InvesmentsController < User::BaseController
 
   def index
     @invesments = Invesment.includes(:value_histories).all.newest
+
+    context = ::HomeChartDataProcess.call(invesments: @invesments)
+    @chart_data = context.data
   end
 
   def show

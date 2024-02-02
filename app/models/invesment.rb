@@ -32,7 +32,7 @@ class Invesment < ApplicationRecord
   def transactions(limit = 5)
     list = Transaction.where("source_id = ? OR target_id = ?", self.id, self.id).newest.limit(limit)
 
-    list.each do |t| 
+    list.each do |t|
       t.transaction_type = (id == t.source_id) ? 'withdraw' : 'deposit'
     end
 
@@ -45,5 +45,13 @@ class Invesment < ApplicationRecord
 
   def current_capital
     capital - withdraw_transactions.map(&:amount).sum + deposit_transactions.map(&:amount).sum
+  end
+
+  def capital_at(time = Time.zone.now)
+    capital - withdraw_transactions.before(time).map(&:amount).sum + deposit_transactions.before(time).map(&:amount).sum
+  end
+
+  def value_at(time = Time.zone.now)
+    value_histories.before(time).last&.current_value || capital_at(time) || current_value
   end
 end

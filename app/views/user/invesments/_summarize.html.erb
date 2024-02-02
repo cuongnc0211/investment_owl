@@ -1,26 +1,9 @@
-<%
- data = [['Year', 'Sales', 'Expenses', 'Profit'],
-   ['2014', 1000, 400, 200],
-   ['2015', 1170, 460, 250],
-   ['2016', 660, 1120, 300],
-   ['2017', 1030, 540, 350]]
-
-  data = (1..3).map do |i|
-    {
-      name: data.first[i],
-      data: data[1..-1].map { |x| [ x[0], x[i] ] }
-    }
-  end
-%>
-
-<p><%# data.to_json %></p>
-
 <div class='row'>
   <div class='col-12 col-md-6'>
-    <%= column_chart(data) %>
+    <%= column_chart(chart_data[:column_chart], thousands: ",", prefix: '₫ ') %>
   </div>
 
   <div class='col-12 col-md-6'>
-    <%= pie_chart([['CK', Money.new(105_000_000, :vnd).amount], ['TK', Money.new(85_000_000, :vnd).amount], ['CCG', Money.new(150_000_000, :vnd).amount]], donut: true, thousands: ",") %>
+    <%= pie_chart(chart_data[:pie_chart], donut: true, thousands: ",", prefix: '₫ ') %>
   </div>
 </div>

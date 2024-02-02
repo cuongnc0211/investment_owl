@@ -10,6 +10,7 @@ class Transaction < ApplicationRecord
 
   scope :newest, -> { order(created_at: :desc) }
   scope :last_5, -> { order(created_at: :desc).limit(5) }
+  scope :before, ->(date) { where('created_at < ?', date) }
 
   delegate :currency, to: :source, prefix: false, allow_nil: true
 

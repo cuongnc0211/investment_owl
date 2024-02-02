@@ -76,3 +76,5 @@ gem 'money-rails', '~> 1.12'
 
 gem 'bootstrap', '~> 5.3.2'
 gem 'jquery-rails'
+
+gem 'slim'

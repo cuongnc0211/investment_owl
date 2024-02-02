@@ -25,9 +25,6 @@
 
         <hr>
 
-        <div class='row'>
-        </div>
-
         <%= turbo_frame_tag 'invesment_new_value' do %>
           <%= link_to 'Log current value', new_user_invesment_value_history_path(invesment_id: invesment.id) %>
         <% end %>

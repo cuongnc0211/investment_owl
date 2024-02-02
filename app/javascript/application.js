@@ -2,6 +2,9 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+import "chartkick"
+import "Chart.bundle"
+
 // For close flash message
 document.body.addEventListener('click', function(event) {
   if (event.target.matches('.alert-close-custom')) {

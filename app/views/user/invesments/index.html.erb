@@ -18,12 +18,18 @@
 
       <div class="card mb-3">
         <div class="card-body">
-          <%= turbo_frame_tag "new_invesment" do %>
+          <%= turbo_frame_tag "new_invesment", class: 'row' do %>
             <%= link_to "New invesment", new_user_invesment_path %>
           <% end %>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
+<section class="bg-white">
+  <div class="container px-1 px-md-5">
+    <div class="row">
       <%= turbo_frame_tag "invesments", class: 'row' do %>
         <% @invesments.each do |invesment| %>
           <%= render invesment %>

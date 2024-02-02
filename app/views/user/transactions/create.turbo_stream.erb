@@ -1,4 +1,6 @@
-<% if source_invesment = @transaction.source %>
+<%
+=begin%>
+ <% if source_invesment = @transaction.source %>
   <%= turbo_stream.replace "#{dom_id @transaction.source}-transactions" do %>
     <%= render partial: 'user/transactions/transaction', collection: source_invesment.transactions(3), as: :transaction %>
   <% end %>
@@ -8,6 +10,8 @@
   <%= turbo_stream.replace "#{dom_id @transaction.target}-transactions" do %>
     <%= render partial: 'user/transactions/transaction', collection: target_invesment.transactions(3), as: :transaction %>
   <% end %>
-<% end %>
+<% end %> 
+<%
+=end%>
 
 <%= turbo_stream.replace 'flash-container', partial: 'layouts/shared/flash' %>

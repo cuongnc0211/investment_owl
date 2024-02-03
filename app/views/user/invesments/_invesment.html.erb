@@ -31,7 +31,7 @@
 
         <%= turbo_frame_tag 'invesment_new_transaction' do %>
           <%= link_to 'Deposit', new_user_transaction_path(target_id: invesment.id) %> |
-          <%= link_to 'Withdraw', new_user_transaction_path(source_id: invesment.id) %> |
+          <%= link_to 'Withdraw', new_user_transaction_path(source_id: invesment.id) %>
         <% end %>
       </div>
     <% end %>

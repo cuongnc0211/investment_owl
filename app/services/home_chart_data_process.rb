@@ -17,7 +17,7 @@ class HomeChartDataProcess
         data: [],
       },
       {
-        name: 'Current Value',
+        name: 'Value',
         data: [],
       }
     ]
@@ -32,7 +32,7 @@ class HomeChartDataProcess
       # insert capital data
       result[0][:data] << [time.strftime('%m/%Y'), invesments.sum { |invesment| invesment.capital_at(time).amount }]
 
-      #insert values data
+      # insert values data
       result[1][:data] << [time.strftime('%m/%Y'), invesments.sum { |invesment| invesment.value_at(time).amount }]
     end
 

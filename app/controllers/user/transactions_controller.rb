@@ -14,6 +14,7 @@ class User::TransactionsController < User::BaseController
 
   def create
     @transaction = Transaction.build(transaction_params)
+    @invesments = [@transaction.source, @transaction.target]
 
     respond_to do |format|
       if @transaction.save

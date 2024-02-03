@@ -1,9 +1,9 @@
-<%= turbo_stream.replace @invesment, target: "#{dom_id(@invesment)}" do %>
-  <%= render partial: 'user/invesments/invesment', locals: { invesment: @invesment } %>
+<%= turbo_stream.replace "chart-controller", target: "chart-controller" do %>
+  <%= render partial: 'user/invesments/chart_event_handler', locals: { data: @chart_data.to_json } %>
 <% end %>
 
-<%= turbo_stream.replace "summerize_#{dom_id(current_user)}", target: "summerize_#{dom_id(current_user)}" do %>
-  <%= render partial: 'user/invesments/summarize', locals: { chart_data: @chart_data } %>
+<%= turbo_stream.replace @invesment, target: "#{dom_id(@invesment)}" do %>
+  <%= render partial: 'user/invesments/invesment', locals: { invesment: @invesment } %>
 <% end %>
 
 <%= turbo_stream.replace 'flash-container', partial: 'layouts/shared/flash' %>

@@ -18,6 +18,9 @@ class User::TransactionsController < User::BaseController
 
     respond_to do |format|
       if @transaction.save
+        user_invesments =  current_user.invesments.includes(:value_histories).active.newest
+        @chart_data = ::HomeChartDataProcess.call(invesments: user_invesments).data
+
         format.html { redirect_to user_transaction_url(@transaction), notice: "Transaction was successfully created." }
         format.turbo_stream {
           flash[:notice] = 'Create transaction successfully'

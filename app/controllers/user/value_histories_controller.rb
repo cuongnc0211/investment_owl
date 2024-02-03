@@ -20,6 +20,9 @@ class User::ValueHistoriesController < User::BaseController
 
     respond_to do |format|
       if @value_history.save
+        user_invesments =  current_user.invesments.includes(:value_histories).active.newest
+        @chart_data = ::HomeChartDataProcess.call(invesments: user_invesments).data
+
         format.html { redirect_to user_invesment_path(@invesment), notice: "Value history was successfully created." }
         format.turbo_stream {
           flash[:notice] = 'Create value history successfully'

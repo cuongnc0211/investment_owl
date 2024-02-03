@@ -1,13 +1,9 @@
-<%
-=begin%>
- <%= turbo_stream.prepend "#{dom_id @invesment}-value_histories" do %>
-  <%= render partial: 'user/value_histories/value_history', locals: { value_history: @value_history } %>
-<% end %> 
-<%
-=end%>
-
 <%= turbo_stream.replace @invesment, target: "#{dom_id(@invesment)}" do %>
   <%= render partial: 'user/invesments/invesment', locals: { invesment: @invesment } %>
+<% end %>
+
+<%= turbo_stream.replace "summerize_#{dom_id(current_user)}", target: "summerize_#{dom_id(current_user)}" do %>
+  <%= render partial: 'user/invesments/summarize', locals: { chart_data: @chart_data } %>
 <% end %>
 
 <%= turbo_stream.replace 'flash-container', partial: 'layouts/shared/flash' %>

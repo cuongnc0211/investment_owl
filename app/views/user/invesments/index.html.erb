@@ -6,7 +6,9 @@
         <div class="card-body">
           <h1>Summerize data</h1>
 
-          <%= render 'summarize', chart_data: @chart_data %>
+          <div id="summerize_<%= dom_id current_user %>">
+            <%= render 'summarize', chart_data: @chart_data %>
+          </div>
         </div>
       </div>
 

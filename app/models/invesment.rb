@@ -52,6 +52,6 @@ class Invesment < ApplicationRecord
   end
 
   def value_at(time = Time.zone.now)
-    value_histories.before(time).last&.current_value || capital_at(time) || current_value
+    value_histories.before(time).last&.current_value || current_value
   end
 end

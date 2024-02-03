@@ -2,7 +2,7 @@ class User::InvesmentsController < User::BaseController
   before_action :set_invesment, only: %i[ show edit update destroy ]
 
   def index
-    @invesments = Invesment.includes(:value_histories).all.newest
+    @invesments = current_user.invesments.includes(:value_histories).active.newest
 
     context = ::HomeChartDataProcess.call(invesments: @invesments)
     @chart_data = context.data

@@ -1,16 +1,87 @@
-<p style="color: green"><%= notice %></p>
+<section class="bg-white">
+  <div class="container px-1 px-md-5">
+    <div class="row px-2">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h1><%= @invesment.name %></h1>
 
-<div>
-  <p>Name: <%= @invesment.name %></p>
-  <p>Description: <%= @invesment.description %></p>
-  <p>Current Capital: <%= @invesment.current_capital.format %></p>
-  <p>Current Value: <%= @invesment.current_value&.format %></p>
-  <p>Created At: <%= @invesment.created_at %></p>
-</div>
+          <div class='row'>
+            <div class='col-12 col-md-6'>
+              <b>Current Value:</b>
+              <span class="<%= profit_class(@invesment) %>"><%= @invesment.current_value&.format %></span>
+            </div>
+            <div class='col-12 col-md-6'>
+              <b>Capital:</b> <%= @invesment.current_capital.format %>
+            </div>
+            <div class='col-12 col-md-6'>
+              <b>Profit:</b>
+              <span class="<%= profit_class(@invesment) %>"><%= @invesment.profit_amount.format %> (<%= @invesment.profit_percentage %> %)</span>
+            </div>
+          </div>
 
-<div>
-  <%= link_to "Edit this invesment", edit_user_invesment_path(@invesment) %> |
-  <%= link_to "Back to invesments", user_invesments_path %>
+          <p>Chart</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <%= button_to "Destroy this invesment", user_invesment_path(@invesment), method: :delete %>
-</div>
+<section class="bg-white">
+  <div class="container px-1 px-md-5">
+    <div class="row">
+      <div class='mb-3 col-12 col-md-6 pl-0'>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Values History</h5>
+
+            <table class='table table-striped'>
+              <thead>
+                <th>ID</th>
+                <th>Value</th>
+                <th>Note</th>
+                <th>Time</th>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class='mb-3 col-12 col-md-6 pr-0'>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Transactions</h5>
+
+            <table class='table table-striped'>
+              <thead>
+                <th>ID</th>
+                <th>From</th>
+                <th>Target</th>
+                <th>Amount</th>
+                <th>Time</th>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

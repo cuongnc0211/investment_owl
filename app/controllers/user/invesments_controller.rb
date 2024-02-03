@@ -57,7 +57,7 @@ class User::InvesmentsController < User::BaseController
 
   private
     def set_invesment
-      @invesment = current_user.invesments.includes(:recent_5_values).find(params[:id])
+      @invesment = current_user.invesments.includes(:value_histories).find(params[:id])
     end
 
     def invesment_params

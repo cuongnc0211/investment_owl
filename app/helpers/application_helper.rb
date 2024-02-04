@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def flash_alert_class(key)
     case key
     when 'notice', 'success'

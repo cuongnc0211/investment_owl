@@ -3,7 +3,8 @@ class User::ValueHistoriesController < User::BaseController
 
   def index
     @invesment = Invesment.find(params[:invesment_id])
-    @value_histories = @invesment.value_histories.newest
+
+    @pagy, @value_histories = pagy(@invesment.value_histories.newest, items: 5)
   end
 
   def new

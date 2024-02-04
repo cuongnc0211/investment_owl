@@ -1,0 +1,18 @@
+<h1>Value Histories</h1>
+
+<%= turbo_frame_tag 'value_list' do %>
+  <table class='table table-striped'>
+      <thead>
+        <th>ID</th>
+        <th>Value</th>
+        <th>Time</th>
+      </thead>
+
+      <tbody>
+        <%= render partial: 'value_history', collection: @value_histories, as: :value_history %>
+      </tbody>
+    </table>
+
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>
+

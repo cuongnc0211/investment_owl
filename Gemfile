@@ -80,3 +80,5 @@ gem 'jquery-rails'
 gem 'slim'
 
 gem "chartkick"
+
+gem 'pagy'

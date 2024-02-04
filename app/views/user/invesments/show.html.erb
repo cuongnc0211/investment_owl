@@ -32,7 +32,7 @@
       <div class='mb-3 col-12 col-md-6 pl-0'>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Values History</h5>
+            <h3 class="card-title">Values History</h3>
 
             <%= turbo_frame_tag 'value_list', src: user_invesment_value_histories_path(invesment_id: @invesment.id) %>
           </div>
@@ -42,27 +42,9 @@
       <div class='mb-3 col-12 col-md-6 pr-0'>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Transactions</h5>
+            <h3 class="card-title">Transactions</h3>
 
-            <table class='table table-striped'>
-              <thead>
-                <th>ID</th>
-                <th>From</th>
-                <th>Target</th>
-                <th>Amount</th>
-                <th>Time</th>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+            <%= turbo_frame_tag 'transaction_list', src: user_transactions_path(invesment_id: @invesment.id) %>
           </div>
         </div>
       </div>

@@ -1,6 +1,20 @@
-<li>
-  <span class="<%= transaction.transaction_type %>">
-    <b><%= transaction_formated_amount(transaction) %></b>
-    (<%= transaction.created_at.strftime('%d/%m/%Y %H:%M') %>)
-  </span>
-</li>
+<tr>
+  <td><%= transaction.id %></td>
+  <td>
+    <% if transaction.source %>
+      <%= link_to transaction.source.name, user_invesment_path(transaction.source) %>
+    <% end %>
+  </td>
+  <td>
+    <% if transaction.target %>
+      <%= link_to transaction.target.name, user_invesment_path(transaction.target) %>
+    <% end %>
+  </td>
+  <td>
+    <span class="<%= transaction.transaction_type %>">
+      <%= transaction_formated_amount(transaction) %>
+    </span>
+  </td>
+  <td><%= transaction.note %></td>
+  <td><%= transaction.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+</tr>

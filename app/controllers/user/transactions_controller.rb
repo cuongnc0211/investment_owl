@@ -1,7 +1,10 @@
 class User::TransactionsController < User::BaseController
 
   def index
-    @transactions = Transaction.all.newest
+    @invesment = Invesment.find_by(id: params[:invesment_id])
+
+    @pagy, @transactions = pagy(Transaction.belong_to_invement(@invesment).newest, items: 1)
+    Invesment.setup_transaction_type(@transactions, @invesment)
   end
 
   def new

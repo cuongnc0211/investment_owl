@@ -11,6 +11,7 @@ class Transaction < ApplicationRecord
   scope :newest, -> { order(created_at: :desc) }
   scope :last_5, -> { order(created_at: :desc).limit(5) }
   scope :before, ->(date) { where('created_at < ?', date) }
+  scope :belong_to_invement, ->(invement) { where("source_id = ? OR target_id = ?", invement.id, invement.id) }
 
   delegate :currency, to: :source, prefix: false, allow_nil: true
 

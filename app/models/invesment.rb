@@ -21,6 +21,14 @@ class Invesment < ApplicationRecord
 
   accepts_nested_attributes_for :value_histories, allow_destroy: true
 
+  def self.setup_transaction_type(transactions, invesment)
+    transactions.each do |t|
+      t.transaction_type = (invesment.id == t.source_id) ? 'withdraw' : 'deposit'
+    end
+
+    transactions
+  end
+
   def profit_amount
     current_value - capital
   end
@@ -29,15 +37,15 @@ class Invesment < ApplicationRecord
     (profit_amount / capital * 100.0).round(rounding_digits)
   end
 
-  def transactions(limit = 5)
-    list = Transaction.where("source_id = ? OR target_id = ?", self.id, self.id).newest.limit(limit)
+  # def transactions(limit = 5)
+  #   list = Transaction.where("source_id = ? OR target_id = ?", self.id, self.id).newest.limit(limit)
 
-    list.each do |t|
-      t.transaction_type = (id == t.source_id) ? 'withdraw' : 'deposit'
-    end
+  #   list.each do |t|
+  #     t.transaction_type = (id == t.source_id) ? 'withdraw' : 'deposit'
+  #   end
 
-    list
-  end
+  #   list
+  # end
 
   def current_value
     value_histories.last&.current_value

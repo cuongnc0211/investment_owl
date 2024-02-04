@@ -1,0 +1,22 @@
+<h1> Transactions </h1>
+
+<%= turbo_frame_tag 'transaction_list' do %>
+  <div class="table-responsive">
+    <table class='table table-striped'>
+      <thead>
+        <th>ID</th>
+        <th>From</th>
+        <th>Target</th>
+        <th>Amount</th>
+        <th>Note</th>
+        <th>Time</th>
+      </thead>
+
+      <tbody>
+        <%= render partial: 'transaction', collection: @transactions, as: :transaction %>
+      </tbody>
+    </table>
+  </div>
+
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>

@@ -9,6 +9,7 @@ class User::InvesmentsController < User::BaseController
   end
 
   def show
+    @chart_data = ::InvesmentChartData.call(invesment: @invesment).data
   end
 
   def new

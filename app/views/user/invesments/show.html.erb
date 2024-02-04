@@ -19,7 +19,18 @@
             </div>
           </div>
 
-          <p>Chart</p>
+          <hr />
+
+          <div class='row mt-3'>
+            <div class='col-12 col-md-6'>
+              <h3>Value History chart</h3>
+              <%= column_chart(@chart_data[:value_chart], thousands: ",", prefix: '₫ ') %>
+            </div>
+            <div class='col-12 col-md-6'>
+              <h3>Profit chart</h3>
+              <%= line_chart @chart_data[:profit_chart], suffix: "%" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -79,6 +79,9 @@ test:
 #
 production:
   <<: *default
+  # postgresql://username:password@rds_end_point:5432/database_name
+
   database: investment_owl_production
-  username: investment_owl
-  password: <%= ENV["INVESTMENT_OWL_DATABASE_PASSWORD"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>

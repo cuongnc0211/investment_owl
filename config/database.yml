@@ -80,6 +80,7 @@ test:
 production:
   <<: *default
   # postgresql://username:password@rds_end_point:5432/database_name
+  # re-deploy
 
   database: investment_owl_production
   username: <%= ENV["DATABASE_USERNAME"] %>

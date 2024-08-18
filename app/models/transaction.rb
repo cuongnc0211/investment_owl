@@ -1,6 +1,4 @@
 class Transaction < ApplicationRecord
-  after_save :log_value_for_invesments
-
   belongs_to :source, class_name: 'Invesment', foreign_key: 'source_id', optional: true
   belongs_to :target, class_name: 'Invesment', foreign_key: 'target_id', optional: true
 
@@ -23,15 +21,5 @@ class Transaction < ApplicationRecord
     return true if source.blank?
 
     errors.add(:amount, 'Not enough money') if source.current_capital < amount
-  end
-
-  def log_value_for_invesments
-    if source.present?
-      source.value_histories.create(current_value: source.value_histories.last.current_value - amount)
-    end
-
-    if target.present?
-      target.value_histories.create(current_value: source.value_histories.last.current_value - amount)
-    end
   end
 end

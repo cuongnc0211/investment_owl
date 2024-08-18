@@ -18,6 +18,7 @@ class Invesment < ApplicationRecord
 
   validates :name, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES }
+  # validates :capital, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   accepts_nested_attributes_for :value_histories, allow_destroy: true
 
@@ -30,7 +31,7 @@ class Invesment < ApplicationRecord
   end
 
   def profit_amount
-    current_value - capital
+    current_value - current_capital
   end
 
   def profit_percentage(rounding_digits = 2)
